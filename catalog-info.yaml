@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://json.schemastore.org/catalog-info.json
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: operata-agent-template
+  description: >-
+    Reusable scaffold for building Operata's autonomous AI agents on the Strands
+    Agents SDK and AWS (Amazon Web Services) Bedrock AgentCore. Engineers clone
+    the template, customise the system prompt, tools, and config, then deploy the
+    agent to AgentCore Runtime. Ships with an agent runner (dry-run and live
+    modes), an AgentCore Runtime entry point, an EventBridge Lambda trigger for
+    scheduled runs, Slack (Block Kit) integration, AgentCore Memory for cross-run
+    persistence, MCP (Model Context Protocol) client factories, environment
+    validation, and Claude Code slash commands.
+  annotations:
+    github.com/project-slug: operata/operata-agent-template
+  tags:
+    - agentcore
+    - ai-agent
+    - autonomous-agents
+    - aws
+    - bedrock
+    - internal-tooling
+    - llm
+    - mcp
+    - python
+    - scaffold
+    - slack
+    - strands
+    - template
+  links:
+    - url: https://github.com/operata/operata-agent-template/blob/main/README.md
+      title: README
+      icon: doc
+spec:
+  owner: group:lead-eng
+  lifecycle: experimental
+  domain: internal-tooling
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: operata-agent-template
+  description: >-
+    Template agent application: a Strands Agents SDK runner deployed to AWS
+    Bedrock AgentCore Runtime, triggered on a schedule via an EventBridge Lambda
+    and on demand. Reads and writes AgentCore Memory, posts formatted output to
+    Slack, and extends to data sources (Jira, GitHub, …) through @tool functions
+    or MCP clients. Cloned and customised per agent use case; the running code is
+    intentionally scaffolding with TODO markers.
+  tags:
+    - agentcore
+    - ai-agent
+    - aws
+    - bedrock
+    - mcp
+    - python
+    - slack
+    - strands
+    - template
+  links:
+    - url: https://github.com/operata/operata-agent-template/blob/main/README.md
+      title: README
+      icon: doc
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:lead-eng
+  system: operata-agent-template
+  domain: internal-tooling
