@@ -1,0 +1,70 @@
+# System — owns the headline owner + lifecycle and the generic per-repo metadata
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: operata-agent-template
+  description: >-
+    Reusable scaffold for building autonomous AI agents at Operata. Engineers
+    clone this repository as the starting point for a new agent, customise the
+    system prompt and tools, and deploy it to AWS (Amazon Web Services) Bedrock
+    AgentCore. It bundles an agent runner with dry-run and live modes, a Bedrock
+    AgentCore Runtime entry point, Slack integration (Block Kit formatting,
+    @mentions, auto-linking), cross-run persistence via AgentCore Memory, MCP
+    (Model Context Protocol) client factories (Jira example included), an
+    EventBridge-triggered Lambda for scheduled runs, and Claude Code slash
+    commands. Built on the Strands Agents SDK (Software Development Kit); the
+    delivery-lead-agent is the reference implementation built from this template.
+  annotations:
+    github.com/project-slug: operata/operata-agent-template
+  tags:
+    - agentcore
+    - ai-agent
+    - autonomous-agent
+    - aws
+    - bedrock
+    - mcp
+    - python
+    - scaffold
+    - slack
+    - strands
+    - template
+  links:
+    - url: https://github.com/operata/operata-agent-template/blob/main/README.md
+      title: README
+      icon: doc
+spec:
+  owner: group:lead-eng
+  lifecycle: experimental
+  domain: internal-tooling
+
+---
+# Component — the agent scaffold itself (single deployable template)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: agent-template
+  description: >-
+    Python scaffold for an autonomous AI agent. Wires together the Strands
+    Agents SDK, an AWS Bedrock AgentCore Runtime entry point (agent_runtime.py),
+    a local agent runner (agent.py), Slack/Memory/MCP tools, an EventBridge
+    Lambda trigger for scheduled runs, and a Makefile workflow. Cloned and
+    customised per use case rather than deployed as-is.
+  tags:
+    - agentcore
+    - ai-agent
+    - autonomous-agent
+    - aws
+    - bedrock
+    - lambda
+    - mcp
+    - python
+    - serverless
+    - slack
+    - strands
+    - template
+spec:
+  type: library
+  lifecycle: experimental
+  owner: group:lead-eng
+  system: operata-agent-template
+  domain: internal-tooling
