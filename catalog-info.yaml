@@ -1,0 +1,65 @@
+# System — owns the headline owner + lifecycle and the generic per-repo metadata
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: operata-agent-template
+  description: >-
+    Scaffolding for building Operata's autonomous AI agents. Provides a
+    ready-to-clone Python project — system-prompt file, tool wiring, Slack
+    (Block Kit) integration, AgentCore Memory, MCP (Model Context Protocol)
+    client factories, an EventBridge-triggered Lambda, tests, and Claude Code
+    slash commands — built on the Strands Agents SDK (Software Development Kit)
+    and deployed to AWS (Amazon Web Services) Bedrock AgentCore. Engineers clone
+    this template and customize the prompt, config, and tools to produce a new
+    agent; the delivery-lead, GTM-lead, and PDel-spine agents are all built from
+    it. The repo is a template, not a running service.
+  annotations:
+    github.com/project-slug: operata/operata-agent-template
+  tags:
+    - python
+    - template
+    - scaffold
+    - ai-agent
+    - autonomous-agents
+    - strands-agents
+    - aws-bedrock
+    - bedrock-agentcore
+    - serverless
+    - lambda
+    - slack
+    - mcp
+    - internal-tooling
+  links:
+    - url: https://github.com/operata/operata-agent-template/blob/main/README.md
+      title: README
+      icon: doc
+spec:
+  owner: group:lead-eng
+  lifecycle: experimental
+  domain: internal-tooling
+
+---
+# Component — the template/scaffold itself, consumed (cloned) to build new agents
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: operata-agent-template
+  description: >-
+    Python template consumed by cloning to bootstrap a new autonomous agent.
+    Ships an agent runner with dry-run/live modes, an AgentCore Runtime entry
+    point, Slack and AgentCore Memory tooling, MCP client factory patterns, and
+    an EventBridge Lambda trigger. All customization points are marked with TODO
+    markers; the scaffold does not run on its own until specialized.
+  tags:
+    - python
+    - template
+    - scaffold
+    - ai-agent
+    - strands-agents
+    - bedrock-agentcore
+spec:
+  type: library
+  lifecycle: experimental
+  owner: group:lead-eng
+  system: operata-agent-template
+  domain: internal-tooling
